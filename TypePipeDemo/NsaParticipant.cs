@@ -17,9 +17,9 @@ namespace TypePipeDemo
       MutableType proxyType = proxyTypeAssemblyContext.ProxyType;
 
       var bindingFlags = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
-      var methods = requestedType.GetMethods (bindingFlags);
+      var auditedMethods = requestedType.GetMethods (bindingFlags);
 
-      foreach (var method in methods)
+      foreach (var method in auditedMethods)
         proxyType.GetOrAddOverride (method).SetBody (CreateAuditingBody);
     }
 

@@ -42,6 +42,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cached.cs" />
+    <Compile Include="CacheParticipant.cs" />
     <Compile Include="Computer.cs" />
     <Compile Include="NsaParticipant.cs" />
     <Compile Include="Program.cs" />

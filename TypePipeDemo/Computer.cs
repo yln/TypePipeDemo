@@ -16,9 +16,17 @@ namespace TypePipeDemo
         Console.WriteLine ("Go on ... but be carefull, big brother is watching.");
     }
 
-    public virtual int ComputeMeaningOfLife ()
+    [Cached]
+    public virtual string ComputeMeaningOfLife ()
     {
-      return 42;
+      Console.WriteLine ("Computing ...");
+      return "Meaning of life: 42";
+    }
+
+    [Cached]
+    public virtual object AnotherOperation ()
+    {
+      return new object();
     }
   }
 }

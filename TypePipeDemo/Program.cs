@@ -7,7 +7,7 @@ namespace TypePipeDemo
   {
     static void Main ()
     {
-      var pipeline = PipelineFactory.Create (".net open space demo", new NsaParticipant());
+      var pipeline = PipelineFactory.Create (".net open space demo", new CacheParticipant());
 
       var computer = pipeline.Create<Computer>();
       //var computer = new Computer();
@@ -15,12 +15,15 @@ namespace TypePipeDemo
       computer.SurfTheWeb ("http://www.commitLogsFromLastNight.com");
       Console.WriteLine();
 
-      Console.WriteLine ("The meaning of life is {0}.", computer.ComputeMeaningOfLife());
-      Console.WriteLine ("The meaning of life is STILL {0}.", computer.ComputeMeaningOfLife());
+      Console.WriteLine (computer.ComputeMeaningOfLife());
+      Console.WriteLine (computer.ComputeMeaningOfLife());
+      Console.WriteLine();
+
+      Console.WriteLine ("Cached: {0}", computer.AnotherOperation() == computer.AnotherOperation());
       Console.WriteLine();
 
       var assemblyPath = pipeline.CodeManager.FlushCodeToDisk();
-      Console.WriteLine (assemblyPath);
+      Console.WriteLine (assemblyPath ?? "no assembly generated");
     }
   }
 }
