@@ -16,9 +16,9 @@ namespace TypePipeDemo
         Console.WriteLine ("Go on ... but be carefull, big brother is watching.");
     }
 
-    public virtual int ComputeMeaningOfLife ()
+    public virtual string ComputeMeaningOfLife ()
     {
-      return 42;
+      return "Meaning of life: 42";
     }
   }
 }

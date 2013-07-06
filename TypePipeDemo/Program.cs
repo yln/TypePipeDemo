@@ -11,8 +11,8 @@ namespace TypePipeDemo
       computer.SurfTheWeb ("http://www.commitLogsFromLastNight.com");
       Console.WriteLine();
 
-      Console.WriteLine ("The meaning of life is {0}.", computer.ComputeMeaningOfLife());
-      Console.WriteLine ("The meaning of life is STILL {0}.", computer.ComputeMeaningOfLife());
+      var answer = computer.ComputeMeaningOfLife();
+      Console.WriteLine (answer);
       Console.WriteLine();
     }
   }
