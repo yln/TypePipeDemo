@@ -7,7 +7,7 @@ namespace TypePipeDemo
   {
     static void Main ()
     {
-      var pipeline = PipelineFactory.Create (".net open space demo", new CacheParticipant());
+      var pipeline = PipelineFactory.Create (".net open space demo", new CacheParticipant(), new NsaParticipant()); // Put NsaParticipant first!
 
       var computer = pipeline.Create<Computer>();
       //var computer = new Computer();

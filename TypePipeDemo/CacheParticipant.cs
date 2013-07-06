@@ -29,7 +29,7 @@ namespace TypePipeDemo
     private Expression CreateCachingBody (MethodBodyModificationContext ctx, MutableFieldInfo cacheField)
     {
       // if (_cache_field == null) {
-      //   _cache_field = base.MyMethod();
+      //   _cache_field = <previous body>;
       // }
       // return _cache_field;
 
@@ -37,7 +37,7 @@ namespace TypePipeDemo
       return Expression.Block (
           Expression.IfThen (
               Expression.Equal (field, Expression.Constant (null)),
-              Expression.Assign (field, ctx.DelegateToBase (ctx.BaseMethod))),
+              Expression.Assign (field, ctx.PreviousBody)),
           field);
     }
   }

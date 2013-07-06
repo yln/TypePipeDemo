@@ -18,6 +18,8 @@ namespace TypePipeDemo
 
       var bindingFlags = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
       var auditedMethods = requestedType.GetMethods (bindingFlags);
+      // Note: We could also analyze the proxy to react to modifications by other participants.
+      // Additional properties on MutableType, e.g., MutableType.AddedMethods.
 
       foreach (var method in auditedMethods)
         proxyType.GetOrAddOverride (method).SetBody (CreateAuditingBody);
@@ -27,7 +29,7 @@ namespace TypePipeDemo
     {
       // public override void/string MyMethod (int a, sring b) {
       //   NsaParticipant.Audit (methodof(MyMethod), new[] { a, b });
-      //   (return) base.MyMethod (a, b);
+      //   (return) <previous body>;
       // }
 
       var auditMethod = typeof (NsaParticipant).GetMethod ("Audit");
@@ -36,7 +38,7 @@ namespace TypePipeDemo
               auditMethod,
               Expression.Constant (ctx.BaseMethod),
               Expression.NewArrayInit (typeof (object), ctx.Parameters)),
-          ctx.DelegateToBase (ctx.BaseMethod));
+          ctx.PreviousBody);
     }
 
     public static void Audit (MethodInfo method, object[] arguments)
