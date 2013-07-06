@@ -18,7 +18,7 @@ namespace TypePipeDemo
 
     public virtual string ComputeMeaningOfLife ()
     {
-      return "Meaning of life: 42";
+      return "The meaning of life is 42.";
     }
   }
 }
