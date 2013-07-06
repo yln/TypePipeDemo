@@ -1,4 +1,5 @@
 ﻿using System;
+using Remotion.TypePipe;
 
 namespace TypePipeDemo
 {
@@ -6,7 +7,10 @@ namespace TypePipeDemo
   {
     static void Main ()
     {
-      var computer = new Computer();
+      var pipeline = PipelineFactory.Create (".net open space demo", new NsaParticipant());
+
+      var computer = pipeline.Create<Computer>();
+      //var computer = new Computer();
 
       computer.SurfTheWeb ("http://www.commitLogsFromLastNight.com");
       Console.WriteLine();
@@ -14,6 +18,9 @@ namespace TypePipeDemo
       Console.WriteLine ("The meaning of life is {0}.", computer.ComputeMeaningOfLife());
       Console.WriteLine ("The meaning of life is STILL {0}.", computer.ComputeMeaningOfLife());
       Console.WriteLine();
+
+      var assemblyPath = pipeline.CodeManager.FlushCodeToDisk();
+      Console.WriteLine (assemblyPath);
     }
   }
 }
